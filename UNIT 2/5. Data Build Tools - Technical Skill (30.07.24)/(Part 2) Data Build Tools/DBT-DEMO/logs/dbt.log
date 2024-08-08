@@ -1,0 +1,60 @@
+[0m20:23:10.437801 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9F101850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9F3B6B10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9EC276E0>]}
+
+
+============================== 20:23:10.456176 | 8326d7ed-d4f5-47f4-bfd8-f91b1625b6a8 ==============================
+[0m20:23:10.456176 [info ] [MainThread]: Running with dbt=1.8.5
+[0m20:23:10.457316 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\tawhe\\.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt init my_project', 'send_anonymous_usage_stats': 'True'}
+[0m20:23:10.478092 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': WindowsPath('C:/Users/tawhe/.dbt')}
+[0m20:23:10.479162 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m20:23:10.481783 [debug] [MainThread]: Starter project path: C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\include\starter_project
+[0m20:23:10.504763 [info ] [MainThread]: 
+Your new dbt project "my_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m20:23:10.507243 [info ] [MainThread]: Setting up your profile.
+[0m20:29:02.657389 [error] [MainThread]: Encountered an error:
+
+[0m20:29:02.659409 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\cli\requires.py", line 138, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\cli\requires.py", line 101, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\cli\main.py", line 470, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\task\init.py", line 347, in run
+    self.setup_profile(profile_name)
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\task\init.py", line 263, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\task\init.py", line 180, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\task\init.py", line 164, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\dbt\task\init.py", line 130, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\click\termui.py", line 164, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tawhe\Documents\DBT-DEMO\.venv\Lib\site-packages\click\termui.py", line 147, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m20:29:02.662977 [debug] [MainThread]: Command `dbt init` failed at 20:29:02.662977 after 352.38 seconds
+[0m20:29:02.663523 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9FC786B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9FAD50A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AC9FDA97C0>]}
+[0m20:29:02.664073 [debug] [MainThread]: Flushing usage events

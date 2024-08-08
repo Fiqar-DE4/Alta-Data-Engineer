@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "d1927686-f309-4b1e-9ef5-4d3267e67973",
+		"name": "Intro-To-REST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36668133"
+	},
+	"item": [
+		{
+			"name": "News API",
+			"item": [
+				{
+					"name": "Get by keyword",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{NewsAPIKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{NewsAPIBaseURL}}/v2/everything?q=bitcoin",
+							"host": [
+								"{{NewsAPIBaseURL}}"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "bitcoin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by keyword from yesterday and sort by popularity",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{NewsAPIKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{NewsAPIBaseURL}}/v2/everything?q=apple&from=2024-07-02&to=2024-07-02&sortBy=popularity",
+							"host": [
+								"{{NewsAPIBaseURL}}"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "apple"
+								},
+								{
+									"key": "from",
+									"value": "2024-07-02"
+								},
+								{
+									"key": "to",
+									"value": "2024-07-02"
+								},
+								{
+									"key": "sortBy",
+									"value": "popularity"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by domain",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{NewsAPIKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{NewsAPIBaseURL}}/v2/everything?domains=techcrunch.com,thenextweb.com",
+							"host": [
+								"{{NewsAPIBaseURL}}"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "domains",
+									"value": "techcrunch.com,thenextweb.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by keyword and search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{NewsAPIKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{NewsAPIBaseURL}}/v2/everything?q=starwars&searchln=lucasart.com",
+							"host": [
+								"{{NewsAPIBaseURL}}"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "starwars"
+								},
+								{
+									"key": "searchln",
+									"value": "lucasart.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by keyword and language",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{NewsAPIKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{NewsAPIBaseURL}}/v2/everything?q=worldwar2&language=en",
+							"host": [
+								"{{NewsAPIBaseURL}}"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "worldwar2"
+								},
+								{
+									"key": "language",
+									"value": "en"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Star Wars API (SWAPI)",
+			"item": [
+				{
+					"name": "Get people by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SWAPIBaseURL}}/api/people/4",
+							"host": [
+								"{{SWAPIBaseURL}}"
+							],
+							"path": [
+								"api",
+								"people",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get planets by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Property</th>\r",
+									"        <th>Value</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Name</td>\r",
+									"        <td>{{response.name}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Rotation Period</td>\r",
+									"        <td>{{response.rotation_period}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Orbital Period</td>\r",
+									"        <td>{{response.orbital_period}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Diameter</td>\r",
+									"        <td>{{response.diameter}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Climate</td>\r",
+									"        <td>{{response.climate}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Gravity</td>\r",
+									"        <td>{{response.gravity}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Terrain</td>\r",
+									"        <td>{{response.terrain}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Surface Water</td>\r",
+									"        <td>{{response.surface_water}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Population</td>\r",
+									"        <td>{{response.population}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Residents</td>\r",
+									"        <td>{{response.residents}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Films</td>\r",
+									"        <td>{{response.films}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Created</td>\r",
+									"        <td>{{response.created}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>Edited</td>\r",
+									"        <td>{{response.edited}}</td>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>URL</td>\r",
+									"        <td>{{response.url}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SWAPIBaseURL}}/api/planets/9",
+							"host": [
+								"{{SWAPIBaseURL}}"
+							],
+							"path": [
+								"api",
+								"planets",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get films by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SWAPIBaseURL}}/api/films/6",
+							"host": [
+								"{{SWAPIBaseURL}}"
+							],
+							"path": [
+								"api",
+								"films",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get species by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SWAPIBaseURL}}/api/species/1",
+							"host": [
+								"{{SWAPIBaseURL}}"
+							],
+							"path": [
+								"api",
+								"species",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get starships by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SWAPIBaseURL}}/api/starships/9",
+							"host": [
+								"{{SWAPIBaseURL}}"
+							],
+							"path": [
+								"api",
+								"starships",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reqress",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get list users by page",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/users?page=2",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single user by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/users/11",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get delayed response",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/users?delay=3",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "delay",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get list resource",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/unknown",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"unknown"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get single resource",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/unknown/2",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"unknown",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Post people",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Fiqar\",\r\n    \"batch\":\"4\",\r\n    \"class\":\"Data Engineer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/users",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post regency",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"Indonesia\",\r\n    \"province\":\"East Java\",\r\n    \"regency\":\"Banyuwangi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/regency",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"regency"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post company",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Company Name</th>\r",
+											"        <th>Company Founder</th>\r",
+											"        <th>Company Type</th>\r",
+											"        <th>ID</th>\r",
+											"        <th>Created At</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>{{response.Company Name}}</td>\r",
+											"        <td>{{response.Company Founder}}</td>\r",
+											"        <td>{{response.Company Type}}</td>\r",
+											"        <td>{{response.id}}</td>\r",
+											"        <td>{{response.createdAt}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company name\":\"Samsung\",\r\n    \"company founder\":\"Lee Byung-chul\",\r\n    \"company type\":\"Private\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/company",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"company"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post food",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"food name\":\"Nasi Tempong\",\r\n    \"food origin\":\"Banyuwangi\",\r\n    \"food flavor\":\"Spicy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/food",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"food"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post cartoon",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartoon name\":\"Spongebob Squarepants\",\r\n    \"created by\":\"Stephen Hillenburg\",\r\n    \"genre\":\"Comedy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/cartoon",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"cartoon"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Put people",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Dzulfiqar\",\r\n    \"batch\":\"1\",\r\n    \"class\":\"Data Scientists\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/people/19",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"people",
+										"19"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put regency",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"Indonesia\",\r\n    \"province\":\"West Sumatra\",\r\n    \"regency\":\"Padang\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/regency/1",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"regency",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put company",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Company Name</th>\r",
+											"        <th>Company Founder</th>\r",
+											"        <th>Company Type</th>\r",
+											"        <th>ID</th>\r",
+											"        <th>Created At</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>{{response.Company Name}}</td>\r",
+											"        <td>{{response.Company Founder}}</td>\r",
+											"        <td>{{response.Company Type}}</td>\r",
+											"        <td>{{response.id}}</td>\r",
+											"        <td>{{response.createdAt}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company name\":\"Xiaomi\",\r\n    \"company founder\":\"Lei Jun\",\r\n    \"company type\":\"Public\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/company/9",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put food",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"food name\":\"Nasi Padang\",\r\n    \"food origin\":\"Padang\",\r\n    \"food flavor\":\"Tasty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/food/100",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"food",
+										"100"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put cartoon",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartoon name\":\"Tom & Jerry\",\r\n    \"created by\":\"William Hanna\",\r\n    \"genre\":\"Comedy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/cartoon/287",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"cartoon",
+										"287"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete people",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Dzulfiqar\",\r\n    \"batch\":\"1\",\r\n    \"class\":\"Data Scientists\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/people/19",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"people",
+										"19"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete regency",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"Indonesia\",\r\n    \"province\":\"West Sumatra\",\r\n    \"regency\":\"Padang\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/regency/1",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"regency",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete company",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var template = `\r",
+											"<style type=\"text/css\">\r",
+											"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+											"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+											"    .tftable tr {background-color:#ffffff;}\r",
+											"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+											"    .tftable tr:hover {background-color:#e0ffff;}\r",
+											"</style>\r",
+											"\r",
+											"<table class=\"tftable\" border=\"1\">\r",
+											"    <tr>\r",
+											"        <th>Company Name</th>\r",
+											"        <th>Company Founder</th>\r",
+											"        <th>Company Type</th>\r",
+											"        <th>ID</th>\r",
+											"        <th>Created At</th>\r",
+											"    </tr>\r",
+											"    <tr>\r",
+											"        <td>{{response.Company Name}}</td>\r",
+											"        <td>{{response.Company Founder}}</td>\r",
+											"        <td>{{response.Company Type}}</td>\r",
+											"        <td>{{response.id}}</td>\r",
+											"        <td>{{response.createdAt}}</td>\r",
+											"    </tr>\r",
+											"</table>\r",
+											"`;\r",
+											"\r",
+											"function constructVisualizerPayload() {\r",
+											"    return { response: pm.response.json() }\r",
+											"}\r",
+											"\r",
+											"pm.visualizer.set(template, constructVisualizerPayload());"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company name\":\"Xiaomi\",\r\n    \"company founder\":\"Lei Jun\",\r\n    \"company type\":\"Public\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/company/9",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete food",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"food name\":\"Nasi Padang\",\r\n    \"food origin\":\"Padang\",\r\n    \"food flavor\":\"Tasty\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/food/100",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"food",
+										"100"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete cartoon",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartoon name\":\"Tom & Jerry\",\r\n    \"created by\":\"William Hanna\",\r\n    \"genre\":\"Comedy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ReqresAPIBaseURL}}/api/cartoon/287",
+									"host": [
+										"{{ReqresAPIBaseURL}}"
+									],
+									"path": [
+										"api",
+										"cartoon",
+										"287"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
