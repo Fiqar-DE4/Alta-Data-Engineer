@@ -1,0 +1,15 @@
+{
+    "type": "record",
+    "namespace": "com.redpanda.examples.avro",
+    "name": "Event",
+    "fields": [
+        { "name": "user_id", "type": "int" },
+        { "name": "event_type", "type": { "type": "enum", "name": "EventType", "symbols": ["CLICK", "PAGE_VIEW", "PURCHASE", "USER_REGISTRATION", "LOGIN", "LOGOUT"] } },
+        { "name": "ts", "type": "string" },
+        { "name": "page_url", "type": ["null", "string"], "default": null },
+        { "name": "product_id", "type": ["null", "string"], "default": null },
+        { "name": "user_email", "type": ["null", "string"], "default": null },
+        { "name": "location", "type": ["null", "string"], "default": null },
+        { "name": "device_type", "type": ["null", "string"], "default": null }
+    ]
+}

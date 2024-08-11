@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: stg_brands
+    description: "brand staging"
+    columns:
+      - name: brand_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_products
+    description: "product staging"
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
+      - name: brand_id
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: "order staging"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_order_details
+    description: "order details staging"
+    columns:
+      - name: order_detail_id
+        tests:
+          - not_null
+          - unique         
+
+
+
+
+
+      # - name: total_quantity
+      #   description: "Total quantity of products sold"
+      #   tests:
+      #     - not_null
+      # - name: total_revenue
+      #   description: "Total revenue for the day"
+      #   tests:
+      #     - not_null
